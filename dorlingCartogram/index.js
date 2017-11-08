@@ -18,11 +18,38 @@ path = d3.geoPath()
     .projection(albersProjection);        //tell it to use the projection that we just made to convert lat/long to pixels
 
 
-//import the data from the .csv file
-d3.json('./cb_2016_us_state_20m.json', function(dataIn){
+var stateLookUp = d3.map();
+
+var sizeScale = d3.scaleLinear().range([0, 50]);
+
+
+
+
+queue()
+    .defer(d3.json, "./cb_2016_us_state_20m.json")
+    .defer(d3.csv, "./statePop.csv")
+    .await(function(err, mapData, populationData){
+
+
+        populationData.forEach(function(d){
+            stateLookUp.set(d.name, d.population)
+        });
+
+
+        sizeScale.domain([0, d3.max(
+            populationData.map(
+                function(d){
+                    return d.population;
+                }))]);
+
+
+    var centroids= mapData.features.map(function(feature){
+
+        return {name: feature.properties.name, center: path.centroid(feature)}
+    });
 
     svg.selectAll("path")               //make empty selection
-        .data(dataIn.features)          //bind to the features array in the map data
+        .data(mapData.features)          //bind to the features array in the map data
         .enter()
         .append("path")                 //add the paths to the DOM
         .attr("d", path)                //actually draw them
@@ -33,17 +60,24 @@ d3.json('./cb_2016_us_state_20m.json', function(dataIn){
 
 
     svg.selectAll('circle')
-        .data([{long:-71.0589, lat:42.3601}])       //bind a single data point, with the long lat of Boston
+        .data(centroids)       //bind a single data point, with the long lat of Boston
                                                     //note that long is negative because it is a W long point!
         .enter()
         .append('circle')
+        .attr('id', function(d){d.name})
         .attr('cx', function (d){
-            return albersProjection([d.long, d.lat])[0]
+            if (isNan(d.center)){
+                retrun -100
+            }
+                return d.center[0]
         })
         .attr('cy', function (d){
-            return albersProjection([d.long, d.lat])[1]
+           return  d.center[1]
         })
-        .attr('r', 10)
+        .attr('r', function(d){
+            return sizeScale(d.stateLookUp.get(d.NAME))
+
+        })
         .attr('fill','purple')
 
 

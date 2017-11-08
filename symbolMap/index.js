@@ -18,6 +18,32 @@ path = d3.geoPath()
     .projection(albersProjection);        //tell it to use the projection that we just made to convert lat/long to pixels
 
 
+
+var makeSymbol = d3.radialArea()
+    .angle(function (d) {
+        return d.angle
+    })
+    .innerRadius(function(d){
+        return d.r0
+    })
+    .outerRadius(function(d){
+        return d.r1
+    });
+
+var symbolPoints = [
+    {angle: 0, r0: 30, r1: 80},
+    {angle: Math.PI * 0.25, r0: 30, r1: 70},
+    {angle: Math.PI * 0.5, r0: 30, r1: 80},
+    {angle: Math.PI * 0.75, r0: 30, r1: 70},
+    {angle: Math.PI, r0: 30, r1: 80},
+    {angle: Math.PI * 1.25, r0: 30, r1: 70},
+    {angle: Math.PI * 1.5, r0: 30, r1: 80},
+    {angle: Math.PI * 1.75, r0: 30, r1: 70},
+    {angle: Math.PI * 2, r0: 30, r1: 80}
+];
+
+var symbolData= makeSymbol(symbolPoints);
+
 queue()
     .defer(d3.json, "./cb_2016_us_state_20m.json")
     .defer(d3.csv, "./dataPoints.csv")
@@ -34,25 +60,26 @@ queue()
         .attr('stroke-width',.2);
 
 
-    /*
+
     svg.selectAll('circle')
         .data(centroids)       //bind a single data point, with the long lat of Boston
                                                     //note that long is negative because it is a W long point!
         .enter()
-        .append('circle')
+        .append('g')
+        .attr('transform', function(d){
+            'translate('+albersProjection(d.long,d.lat)[0]+','+ albersProjection(d.long,d.lat)[1]+')'
+    })
         .attr('cx', function (d){
-            return d.center[0];
+            return d.albersProjection(d.long,d.lat)[0];
         })
         .attr('cy', function (d){
             return d.center[1];
         })
         .attr('id',function(d){return d.name})
-        .attr('r', function(d){
-            return sizeScale(stateLookup.get(d.name))
-        })
+        .attr('r', 10)
         .attr('fill','purple')
         .attr('fill-opacity',.7);
-    */
+
 
   });
 
