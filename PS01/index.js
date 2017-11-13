@@ -29,6 +29,11 @@ var svg2 = d3.select('#svg2')
     .append('g')
     .attr('transform', 'translate(' + marginLeft + ',' + marginTop + ')');
 
+svg.append('text')
+    .attr('x', 350)
+    .attr('y', 350)
+    .attr('class', 'textBox')
+    .text('');
 
 var axislabel = [{value: 1, text: "None"},
     {value: 2, text: "Diploma from Dance School"},
@@ -111,6 +116,9 @@ d3.csv('./data.csv', function(dataIn){
             }
         })
         .attr("stroke", "black")
+        .attr('stroke-dasharray', function (d) {
+            return d.value
+        })
         .attr('stoke-width', '10')
         .attr("fill", "none")
         .attr('data-toggle', 'tooltip')
@@ -130,6 +138,33 @@ d3.csv('./data.csv', function(dataIn){
                 .duration(1000)
                 .style("opacity", 0);
         });
+
+    /*axisKey=svg.selectAll('axisKey')
+        .data(axislabel)
+        .enter()
+        .append('line');
+
+    axisKeyLabel= axisKey
+        .attr("x1", 300)
+        .attr("y1", function(d){
+            if (isNaN(d.value)) {
+                return -1000
+            } else {
+                return 10*d.value
+            }
+        })
+        .attr("x2", 500)
+        .attr("y1", function(d){
+            if (isNaN(d.value)) {
+                return -1000
+            } else {
+                return 10*d.value
+            }
+        })
+        .attr('stroke-dasharray', function (d) {
+            return d.value
+        });*/
+
 
     svg2.selectAll('line')
         .data(currentDancers, function(d){return d.A7GENED;})
@@ -152,8 +187,10 @@ d3.csv('./data.csv', function(dataIn){
                 return R*d.value
             }
         })
-        .attr("stroke", "black")
-        .attr('stoke-width', '10')
+        .attr("stroke", "slategrey")
+        .attr('stroke-dasharray', function (d) {
+            return d.value
+        })
         .attr("fill", "none")
         .attr('data-toggle', 'tooltip')
         .attr('title', function(d){
@@ -317,10 +354,14 @@ function buttonClicked(){
     if(clicked == true){
         drawPoints(currentDancers);
         clicked = false;
+        d3.select('.textBox')
+            .text('Current Dancers')
 
     }
     else{
         drawPoints(formerDancers);
         clicked = true;
+        d3.select('.textBox')
+            .text('Former Dancers')
     }
 }
