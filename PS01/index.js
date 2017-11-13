@@ -139,13 +139,14 @@ d3.csv('./data.csv', function(dataIn){
                 .style("opacity", 0);
         });
 
-    /*axisKey=svg.selectAll('axisKey')
+    //axis key1
+    axisKey=svg.selectAll('line')
         .data(axislabel)
         .enter()
         .append('line');
 
     axisKeyLabel= axisKey
-        .attr("x1", 300)
+        .attr("x1", 250)
         .attr("y1", function(d){
             if (isNaN(d.value)) {
                 return -1000
@@ -153,17 +154,21 @@ d3.csv('./data.csv', function(dataIn){
                 return 10*d.value
             }
         })
-        .attr("x2", 500)
-        .attr("y1", function(d){
+        .attr("x2", 350)
+        .attr("y2", function(d){
             if (isNaN(d.value)) {
                 return -1000
             } else {
                 return 10*d.value
             }
         })
-        .attr('stroke-dasharray', function (d) {
+        .attr("stroke", "black")
+        .attr('stroke-width', 10);
+
+        /*.attr('stroke-dasharray', function (d) {
             return d.value
         });*/
+
 
 
     svg2.selectAll('line')
@@ -239,14 +244,14 @@ function drawPoints(pointData){
             if (isNaN(d.A6QUALS1)) {
                 return center_x
             } else {
-                return center_x - R*d.A6QUALS1*(Math.cos(Math.floor(Math.random()*360)*(Math.PI/180)))
+                return center_x - R*d.A6QUALS1*(Math.cos((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
         })
         .attr('y2', function(d){
             if (isNaN(d.A6QUALS1)) {
                 return center_y
             } else {
-                return  center_y - R*d.A6QUALS1*(Math.sin(Math.floor(Math.random()*360)*(Math.PI/180)))
+                return  center_y - R*d.A6QUALS1*(Math.sin((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
         })
         .attr('stroke','red');
@@ -261,14 +266,14 @@ function drawPoints(pointData){
             if (isNaN(d.A6QUALS1)) {
                 return center_x
             } else {
-                return center_x - R*d.A6QUALS1*(Math.cos(Math.floor(Math.random()*360)*(Math.PI/180)))
+                return center_x - R*d.A6QUALS1*(Math.cos((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
-        })
+           })
         .attr('y2', function(d){
             if (isNaN(d.A6QUALS1)) {
                 return center_y
             } else {
-                return  center_y - R*d.A6QUALS1*(Math.sin(Math.floor(Math.random()*360)*(Math.PI/180)))
+                return  center_y - R*d.A6QUALS1*(Math.sin((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
         })
         .attr('id', function(d){
@@ -276,7 +281,7 @@ function drawPoints(pointData){
         })
         .attr('stroke','red')
         .on('mouseover', function(d){
-            //console.log(d.A6QUALS1);
+            console.log(d.A6QUALS1);
             //console.log(d.A7GENED);
             d3.select(this).attr('stroke-width', '10').attr('stroke','purple');
             var currentId =  d3.select(this).attr('id');
@@ -306,14 +311,14 @@ function drawPoints(pointData){
             if (isNaN(d.A7GENED)) {
                 return center_x2
             } else {
-                return center_x2 - R*d.A7GENED*(Math.cos(Math.floor(Math.random()*360)*(Math.PI/180)))
+                return center_x2 - R*d.A7GENED*(Math.cos((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
         })
         .attr('y2', function(d){
             if (isNaN(d.A7GENED)) {
                 return center_y2
             } else {
-                return  center_y2 - R*d.A7GENED*(Math.sin(Math.floor(Math.random()*360)*(Math.PI/180)))
+                return  center_y2 - R*d.A7GENED*(Math.sin((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
         })
         .attr('stroke','purple');
@@ -328,14 +333,14 @@ function drawPoints(pointData){
             if (isNaN(d.A7GENED)) {
                 return center_x2
             } else {
-                return center_x2 - R*d.A7GENED*(Math.cos(Math.floor(Math.random()*360)*(Math.PI/180)))
+                return center_x2 - R*d.A7GENED*(Math.cos((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
         })
         .attr('y2', function(d){
             if (isNaN(d.A7GENED)) {
                 return  center_y2
             } else {
-                return  center_y2 - R*d.A7GENED*(Math.sin(Math.floor(Math.random()*360)*(Math.PI/180)))
+                return  center_y2 - R*d.A7GENED*(Math.sin((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
         })
         .attr('id', function(d){
@@ -343,8 +348,6 @@ function drawPoints(pointData){
         })
         .attr('stroke','purple')
         .on("mouseover", function(d) {
-           //console.log(d.A6QUALS1);
-            console.log(d.A7GENED);
 
         });
 }
