@@ -73,6 +73,37 @@ var div = d3.select("body").append("div")
 //console.log(testMap);
 //console.log(testMap.get(5));
 
+//axis key1
+axisKey=svg.selectAll('line')
+    .data(axislabel)
+    .enter()
+    .append('line');
+
+axisKeyLabel= axisKey
+    .append('line')
+    .attr("x1", '100')
+    .attr("y1", function(d){
+        if (isNaN(d.value)) {
+            return 0
+        } else {
+            console.log(d.value);
+            return 100+10*d.value
+        }
+    })
+    .attr("x2", '100')
+    .attr("y2", function(d){
+        if (isNaN(d.value)) {
+            return 0
+        } else {
+            return 100+10*d.value
+        }
+    })
+    .attr("fill", "black")
+    .attr('stroke-dasharray', function (d) {
+            return d.value
+        });
+
+
 
 //import the data from the .csv file
 d3.csv('./data.csv', function(dataIn){
@@ -138,37 +169,6 @@ d3.csv('./data.csv', function(dataIn){
                 .duration(1000)
                 .style("opacity", 0);
         });
-
-    //axis key1
-    axisKey=svg.selectAll('lines')
-        .data(axislabel)
-        .enter()
-        .append('line');
-
-    axisKeyLabel= axisKey
-        .attr("x1", 100)
-        .attr("y1", function(d){
-            if (isNaN(d.value)) {
-                return -1000
-            } else {
-                console.log(d.value);
-                return 100+10*d.value
-            }
-        })
-        .attr("x2", 100)
-        .attr("y2", function(d){
-            if (isNaN(d.value)) {
-                return -1000
-            } else {
-                return 100+10*d.value
-            }
-        })
-        .attr("stroke", "black")
-        .attr('stroke-width', 10);
-
-        /*.attr('stroke-dasharray', function (d) {
-            return d.value
-        });*/
 
 
 
