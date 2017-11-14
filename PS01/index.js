@@ -85,7 +85,7 @@ axisKeyLabel= axisKey
         if (isNaN(d.value)) {
             return -1000
         } else {
-            return 25+10*d.value
+            return 10+15*d.value
         }
     })
     .attr("x2", '375')
@@ -93,7 +93,7 @@ axisKeyLabel= axisKey
         if (isNaN(d.value)) {
             return -1000
         } else {
-            return 25+10*d.value
+            return 10+15*d.value
         }
     })
     .attr("stroke", "black")
@@ -113,11 +113,11 @@ textKey= svg.selectAll('text')
         if (isNaN(d.value)) {
             return -1000
         } else {
-            return 23+10*d.value
+            return 9+15*d.value
         }})
     .text(function(d){ return d.text})
     .attr("font-size", "10px")
-    .attr("fill", "red");
+    .attr("fill", "black");
 
 
 
@@ -133,7 +133,7 @@ axisKeyLabel2= axisKey2
         if (isNaN(d.value)) {
             return -1000
         } else {
-            return 10+10*d.value
+            return 10+15*d.value
         }
     })
     .attr("x2", '375')
@@ -141,7 +141,7 @@ axisKeyLabel2= axisKey2
         if (isNaN(d.value)) {
             return -1000
         } else {
-            return 10+10*d.value
+            return 10+15*d.value
         }
     })
     .attr("stroke", "black")
@@ -150,6 +150,22 @@ axisKeyLabel2= axisKey2
         return d.value
     });
 
+textKey2= svg2.selectAll('text')
+    .data(axislabel2)
+    .enter()
+    .append('text');
+
+textKey2= textKey2
+    .attr('x', '325')
+    .attr('y', function(d){
+        if (isNaN(d.value)) {
+            return -1000
+        } else {
+            return 9+15*d.value
+        }})
+    .text(function(d){ return d.text})
+    .attr("font-size", "10px")
+    .attr("fill", "black");
 
 
 
