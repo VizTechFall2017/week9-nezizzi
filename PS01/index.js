@@ -80,21 +80,21 @@ axisKey=svg.selectAll('line')
     .append('line');
 
 axisKeyLabel= axisKey
-    .attr("x1", '200')
+    .attr("x1", '300')
     .attr("y1", function(d){
         if (isNaN(d.value)) {
             return -1000
         } else {
             console.log(d.value);
-            return 300+10*d.value
+            return 10+10*d.value
         }
     })
-    .attr("x2", '300')
+    .attr("x2", '375')
     .attr("y2", function(d){
         if (isNaN(d.value)) {
             return -1000
         } else {
-            return 299+10*d.value
+            return 11+10*d.value
         }
     })
     .attr("stroke", "black")
@@ -103,27 +103,30 @@ axisKeyLabel= axisKey
             return d.value
         });
 
+
+
+
 axisKey2=svg2.selectAll('line')
     .data(axislabel)
     .enter()
     .append('line');
 
 axisKeyLabel2= axisKey2
-    .attr("x1", '200')
+    .attr("x1", '300')
     .attr("y1", function(d){
         if (isNaN(d.value)) {
             return -1000
         } else {
             console.log(d.value);
-            return 300+10*d.value
+            return 10+10*d.value
         }
     })
-    .attr("x2", '300')
+    .attr("x2", '375')
     .attr("y2", function(d){
         if (isNaN(d.value)) {
             return -1000
         } else {
-            return 299+10*d.value
+            return 11+10*d.value
         }
     })
     .attr("stroke", "black")
