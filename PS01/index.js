@@ -76,10 +76,10 @@ var div = d3.select("body").append("div")
 //axis key1
 axisKey=svg.selectAll('line')
     .data(axislabel)
-    .enter();
+    .enter()
+    .append('line');
 
 axisKeyLabel= axisKey
-    .append('line')
     .attr("x1", '200')
     .attr("y1", function(d){
         if (isNaN(d.value)) {
@@ -238,7 +238,6 @@ function drawPoints(pointData){
 
     //update the properties of the remaining bars (as before)
     lines
-        .append('line')
         .attr('x1',center_x)
         .attr('y1',center_y)
         .attr('x2', function(d){
@@ -296,7 +295,7 @@ function drawPoints(pointData){
             svg2.selectAll('#' + currentId).attr('stroke', 'purple').attr('stroke-width', '1');
         });
 
-    var lines2 = svg2.selectAll('line')
+    var lines2 = svg2.selectAll('.dataLines2')
         .data(pointData, function(d){
             return d.A7GENED;
         });
@@ -307,7 +306,6 @@ function drawPoints(pointData){
 
     //update the properties of the remaining bars (as before)
     lines2
-        .append('line')
         .attr('x1',center_x2)
         .attr('y1',center_y2)
         .attr('x2', function(d){
@@ -324,7 +322,8 @@ function drawPoints(pointData){
                 return  center_y2 - R*d.A7GENED*(Math.sin((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
         })
-        .attr('stroke','purple');
+        .attr('stroke','purple')
+        .attr('class', 'dataLines2');
 
     //add the enter() function to make bars for any new countries in the list, and set their properties
     lines2
@@ -350,6 +349,7 @@ function drawPoints(pointData){
             return 'id' + d.CASEID
         })
         .attr('stroke','purple')
+        .attr('class', 'dataLines2')
         .on("mouseover", function(d) {
 
         });
