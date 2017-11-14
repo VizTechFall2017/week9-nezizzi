@@ -76,8 +76,7 @@ var div = d3.select("body").append("div")
 //axis key1
 axisKey=svg.selectAll('line')
     .data(axislabel)
-    .enter()
-    .append('line');
+    .enter();
 
 axisKeyLabel= axisKey
     .append('line')
