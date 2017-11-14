@@ -80,7 +80,7 @@ axisKey=svg.selectAll('line')
     .append('line');
 
 axisKeyLabel= axisKey
-    .attr("x1", '300')
+    .attr("x1", '310')
     .attr("y1", function(d){
         if (isNaN(d.value)) {
             return -1000
@@ -108,14 +108,15 @@ textKey= svg.selectAll('text')
     .append('text');
 
     textKey1= textKey
-    .attr('x', '325')
+    .attr('x', '330')
     .attr('y', function(d){
         if (isNaN(d.value)) {
             return -1000
         } else {
+            console.log(d.value);
             return 9+15*d.value
         }})
-    .text(function(d){ return d.text})
+    .text(function(d){console.log(d.text); return d.text})
     .attr("font-size", "10px")
     .attr("fill", "black");
 
@@ -219,8 +220,8 @@ d3.csv('./data.csv', function(dataIn){
         .attr('data-toggle', 'tooltip')
         .attr('title', function(d){
             return  d.text;
-        })
-        .on("mouseover", function(d) {
+        });
+        /*.on("mouseover", function(d) {
             div.transition()
                 .duration(10)
                 .style("opacity", .9);
@@ -232,7 +233,7 @@ d3.csv('./data.csv', function(dataIn){
             div.transition()
                 .duration(1000)
                 .style("opacity", 0);
-        });
+        });*/
 
 
 
@@ -265,8 +266,8 @@ d3.csv('./data.csv', function(dataIn){
         .attr('data-toggle', 'tooltip')
         .attr('title', function(d){
             return  d.text;
-        })
-        .on("mouseover", function(d) {
+        });
+        /*.on("mouseover", function(d) {
             div.transition()
                 .duration(10)
                 .style("opacity", .9);
@@ -278,7 +279,7 @@ d3.csv('./data.csv', function(dataIn){
             div.transition()
                 .duration(1000)
                 .style("opacity", 0);
-        });
+        });*/
 
 
     //call the drawPoints function below, and hand it the data2016 variable with the 2016 object array in it
