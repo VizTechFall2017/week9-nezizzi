@@ -80,21 +80,21 @@ axisKey=svg.selectAll('line')
 
 axisKeyLabel= axisKey
     .append('line')
-    .attr("x1", '50')
+    .attr("x1", '200')
     .attr("y1", function(d){
         if (isNaN(d.value)) {
             return 0
         } else {
             console.log(d.value);
-            return 100+10*d.value
+            return 300+10*d.value
         }
     })
-    .attr("x2", '50')
+    .attr("x2", '300')
     .attr("y2", function(d){
         if (isNaN(d.value)) {
             return 0
         } else {
-            return 100+10*d.value
+            return 299+10*d.value
         }
     })
     .attr("stroke", "black")
