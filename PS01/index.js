@@ -81,7 +81,7 @@ axisKey=svg.selectAll('line')
 
 axisKeyLabel= axisKey
     .append('line')
-    .attr("x1", '100')
+    .attr("x1", '50')
     .attr("y1", function(d){
         if (isNaN(d.value)) {
             return 0
@@ -90,7 +90,7 @@ axisKeyLabel= axisKey
             return 100+10*d.value
         }
     })
-    .attr("x2", '100')
+    .attr("x2", '50')
     .attr("y2", function(d){
         if (isNaN(d.value)) {
             return 0
@@ -98,7 +98,8 @@ axisKeyLabel= axisKey
             return 100+10*d.value
         }
     })
-    .attr("fill", "black")
+    .attr("stroke", "black")
+    .attr('stoke-width', '10')
     .attr('stroke-dasharray', function (d) {
             return d.value
         });
