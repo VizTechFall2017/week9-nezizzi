@@ -226,7 +226,7 @@ d3.csv('./data.csv', function(dataIn){
 
 function drawPoints(pointData){
 
-   var lines = svg.selectAll('line')
+   var lines = svg.selectAll('.dataLines')
        .data(pointData, function(d){
            //console.log(d.A6QUALS1);
            return d.A6QUALS1;
@@ -255,7 +255,8 @@ function drawPoints(pointData){
                 return  center_y - R*d.A6QUALS1*(Math.sin((Math.floor(Math.random()*360))*(Math.PI/180)))
             }
         })
-        .attr('stroke','red');
+        .attr('stroke','red')
+        .attr('class', 'dataLines');
 
     //add the enter() function to make bars for any new countries in the list, and set their properties
     lines
@@ -281,6 +282,7 @@ function drawPoints(pointData){
             return 'id' + d.CASEID
         })
         .attr('stroke','red')
+        .attr('class', 'dataLines')
         .on('mouseover', function(d){
             //console.log(d.A6QUALS1);
             //console.log(d.A7GENED);
