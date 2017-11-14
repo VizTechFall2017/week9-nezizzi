@@ -85,8 +85,7 @@ axisKeyLabel= axisKey
         if (isNaN(d.value)) {
             return -1000
         } else {
-            console.log(d.value);
-            return 10+10*d.value
+            return 25+10*d.value
         }
     })
     .attr("x2", '375')
@@ -94,7 +93,7 @@ axisKeyLabel= axisKey
         if (isNaN(d.value)) {
             return -1000
         } else {
-            return 11+10*d.value
+            return 25+10*d.value
         }
     })
     .attr("stroke", "black")
@@ -103,11 +102,28 @@ axisKeyLabel= axisKey
             return d.value
         });
 
+textKey= svg.selectAll('text')
+    .data(axislabel)
+    .enter()
+    .append('text');
+
+    textKey1= textKey
+    .attr('x', '325')
+    .attr('y', function(d){
+        if (isNaN(d.value)) {
+            return -1000
+        } else {
+            return 23+10*d.value
+        }})
+    .text(function(d){ return d.text})
+    .attr("font-size", "10px")
+    .attr("fill", "red");
+
 
 
 
 axisKey2=svg2.selectAll('line')
-    .data(axislabel)
+    .data(axislabel2)
     .enter()
     .append('line');
 
@@ -117,7 +133,6 @@ axisKeyLabel2= axisKey2
         if (isNaN(d.value)) {
             return -1000
         } else {
-            console.log(d.value);
             return 10+10*d.value
         }
     })
@@ -126,7 +141,7 @@ axisKeyLabel2= axisKey2
         if (isNaN(d.value)) {
             return -1000
         } else {
-            return 11+10*d.value
+            return 10+10*d.value
         }
     })
     .attr("stroke", "black")
@@ -134,6 +149,8 @@ axisKeyLabel2= axisKey2
     .attr('stroke-dasharray', function (d) {
         return d.value
     });
+
+
 
 
 //import the data from the .csv file
