@@ -140,26 +140,27 @@ d3.csv('./data.csv', function(dataIn){
         });
 
     //axis key1
-    axisKey=svg.selectAll('line')
+    axisKey=svg.selectAll('lines')
         .data(axislabel)
         .enter()
         .append('line');
 
     axisKeyLabel= axisKey
-        .attr("x1", 250)
+        .attr("x1", 100)
         .attr("y1", function(d){
             if (isNaN(d.value)) {
                 return -1000
             } else {
-                return 10*d.value
+                console.log(d.value);
+                return 100+10*d.value
             }
         })
-        .attr("x2", 350)
+        .attr("x2", 100)
         .attr("y2", function(d){
             if (isNaN(d.value)) {
                 return -1000
             } else {
-                return 10*d.value
+                return 100+10*d.value
             }
         })
         .attr("stroke", "black")
@@ -281,7 +282,7 @@ function drawPoints(pointData){
         })
         .attr('stroke','red')
         .on('mouseover', function(d){
-            console.log(d.A6QUALS1);
+            //console.log(d.A6QUALS1);
             //console.log(d.A7GENED);
             d3.select(this).attr('stroke-width', '10').attr('stroke','purple');
             var currentId =  d3.select(this).attr('id');
