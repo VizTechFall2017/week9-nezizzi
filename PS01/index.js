@@ -83,7 +83,7 @@ axisKeyLabel= axisKey
     .attr("x1", '200')
     .attr("y1", function(d){
         if (isNaN(d.value)) {
-            return 0
+            return -1000
         } else {
             console.log(d.value);
             return 300+10*d.value
@@ -92,7 +92,7 @@ axisKeyLabel= axisKey
     .attr("x2", '300')
     .attr("y2", function(d){
         if (isNaN(d.value)) {
-            return 0
+            return -1000
         } else {
             return 299+10*d.value
         }
@@ -103,6 +103,34 @@ axisKeyLabel= axisKey
             return d.value
         });
 
+axisKey2=svg2.selectAll('line')
+    .data(axislabel)
+    .enter()
+    .append('line');
+
+axisKeyLabel2= axisKey2
+    .attr("x1", '200')
+    .attr("y1", function(d){
+        if (isNaN(d.value)) {
+            return -1000
+        } else {
+            console.log(d.value);
+            return 300+10*d.value
+        }
+    })
+    .attr("x2", '300')
+    .attr("y2", function(d){
+        if (isNaN(d.value)) {
+            return -1000
+        } else {
+            return 299+10*d.value
+        }
+    })
+    .attr("stroke", "black")
+    .attr('stoke-width', '10')
+    .attr('stroke-dasharray', function (d) {
+        return d.value
+    });
 
 
 //import the data from the .csv file
